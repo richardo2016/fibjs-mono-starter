@@ -4,12 +4,13 @@ const path = require('path')
 const mkdirp = require('@fibjs/mkdirp')
 const readdirr = require('@fibjs/fs-readdir-recursive')
 
-const monoPkgJson = require('../package.json')
 const ejs = require('ejs')
 
-const monoscope = `${monoPkgJson.monoscope || monoPkgJson.name}`
-const scopePrefix = `@${monoscope}`
-const monoName = monoPkgJson.name
+const monoInfo = require('../helpers/monoInfo')
+
+const monoscope = monoInfo.monoScope
+const scopePrefix = monoInfo.scopePrefix
+const monoName = monoInfo.monoName
 
 const PKG_DIR = path.resolve(__dirname, '../packages')
 const TPL_PDIR = path.resolve(__dirname, '../tpls')
@@ -67,7 +68,7 @@ packages.forEach(({
       pkg: {
         name: `${scopePrefix}/${comPkgname}`,
         npm_name: `${scopePrefix}/${comPkgname}`,
-        git_group_name: `${monoscope}/${monoName}`,
+        git_path: monoInfo.gitPath || `${monoscope}/${monoName}`,
         mono_path: `packages/${comPkgname}`,
       }
     })
