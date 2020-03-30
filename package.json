@@ -3,7 +3,9 @@
   "monoscope": "fibjs-monogroup",
   "private": true,
   "scripts": {
-    "ci": "lerna run ci --stream"
+    "build": "lerna run build",
+    "ci": "lerna run ci --stream",
+    "update-pkg": "fibjs ./scripts/write-pkg-manifest.js"
   },
   "devDependencies": {
     "@fibjs/fs-readdir-recursive": "^1.0.2",
