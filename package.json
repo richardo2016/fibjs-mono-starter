@@ -1,6 +1,6 @@
 {
   "name": "fibjs-mono-starter",
-  "monoscope": "fibjs-group",
+  "monoscope": "fibjs-monogroup",
   "private": true,
   "scripts": {
     "ci": "lerna run ci --stream"

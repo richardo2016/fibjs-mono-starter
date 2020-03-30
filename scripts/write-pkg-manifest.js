@@ -7,7 +7,8 @@ const readdirr = require('@fibjs/fs-readdir-recursive')
 const monoPkgJson = require('../package.json')
 const ejs = require('ejs')
 
-const scopePrefix = `@${monoPkgJson.name || monoPkgJson.monoscope}`
+const monoscope = `${monoPkgJson.monoscope || monoPkgJson.name}`
+const scopePrefix = `@${monoscope}`
 const monoName = monoPkgJson.name
 
 const PKG_DIR = path.resolve(__dirname, '../packages')
@@ -65,7 +66,8 @@ packages.forEach(({
     let output = ejs.render(source, {
       pkg: {
         name: `${scopePrefix}/${comPkgname}`,
-        git_group_name: `${monoPkgJson.monoscope}/${monoName}`,
+        npm_name: `${scopePrefix}/${comPkgname}`,
+        git_group_name: `${monoscope}/${monoName}`,
         mono_path: `packages/${comPkgname}`,
       }
     })
