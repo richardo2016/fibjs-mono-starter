@@ -3,7 +3,7 @@
 declare namespace FxLibNS {
 }
 
-declare module "@fibjs-mono-starter/starter" {
+declare module "<%= pkg.name %>" {
     var mod: any
     export = mod
 }
