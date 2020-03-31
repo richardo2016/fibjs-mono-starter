@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "ci": "lerna run ci --stream",
+    "ci": "lerna run ci",
     "update-pkg": "fibjs ./scripts/write-pkg-manifest.js"
   },
   "devDependencies": {
