@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "main": "lib",
-  "types": "@types/index.d.ts",
+  "types": "typings/index.d.ts",
   "repository": {
     "type": "https",
     "url": "https://github.com/<%= pkg.git_path %>/packages/<%= pkg.name %>"
   },
   "homepage": "https://github.com/<%= pkg.git_path %>/packages/<%= pkg.name %>",
   "scripts": {
-    "build": "fib-typify ./src -o ./lib",
+    "build": "ftsc ./src/* --outDir ./lib",
     "test": "fibjs test",
     "ci": "npm run build && npm run test",
     "prepublishOnly": "npm run ci"
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@fibjs/types": "^0.27.1",
     "fib-pool": "^1.6.0",
-    "fib-typify": "^0.6.0"
+    "fib-typify": "^0.8.3"
   },
 	"publishConfig": {
 		"access": "public"
@@ -32,7 +32,8 @@
 			"0.26.1",
 			"0.27.0",
       "0.28.0",
-      "0.29.0"
+      "0.29.0",
+      "0.30.0"
 		]
 	}
 }

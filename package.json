@@ -1,6 +1,9 @@
 {
   "name": "fibjs-mono-starter",
-  "monoscope": "fibjs-monogroup",
+  "mono": {
+    "scope": "fibjs-mono-group",
+    "git_path": "fibjs-mono-group/path"
+  },
   "private": true,
   "scripts": {
     "build": "lerna run build",
