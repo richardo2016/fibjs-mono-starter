@@ -14,7 +14,7 @@
             "@fibjs/types"
         ],
         "typeRoots": [
-            "@types/index.d.ts"
+            "typings/index.d.ts"
         ]
     }
 }
