@@ -36,6 +36,7 @@ const prettyJson = (content) => {
 packages.forEach(({
   name: comname,
   pkgname,
+  isTopPackage,
 }) => {
   const comPkgname = pkgname || `${comname}`
   const comDirname = comPkgname
@@ -67,10 +68,11 @@ packages.forEach(({
     let output = ejs.render(source, {
       pkg: {
         name: comPkgname,
-        npm_name: `${scopePrefix}/${comPkgname}`,
+        npm_name: isTopPackage ? comPkgname : `${scopePrefix}/${comPkgname}`,
         git_group: monoInfo.monoscope,
         git_path: monoInfo.gitPath || `${monoscope}/${monoName}`,
         mono_path: `packages/${comPkgname}`,
+        isTopPackage,
       }
     })
 
