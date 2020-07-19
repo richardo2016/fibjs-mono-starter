@@ -35,11 +35,11 @@ const prettyJson = (content) => {
 
 packages.forEach(({
   name: comname,
-  pkgname,
   isTopPackage,
+  _dirname,
 }) => {
-  const comPkgname = pkgname || `${comname}`
-  const comDirname = comPkgname
+  const comPkgname = `${comname}` || _dirname
+  const comDirname = _dirname || comPkgname
   const comDir = path.resolve(PKG_DIR, `./${comDirname}`)
   if (!fs.existsSync(comDir)) mkdirp(comDir)
 
