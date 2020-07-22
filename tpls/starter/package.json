@@ -6,9 +6,9 @@
   "types": "typings/index.d.ts",
   "repository": {
     "type": "https",
-    "url": "https://github.com/<%= pkg.git_path %>/<%= pkg.mono_path %>"
+    "url": "https://github.com/<%= pkg.git_path %>/tree/master/<%= pkg.mono_path %>"
   },
-  "homepage": "https://github.com/<%= pkg.git_path %>/<%= pkg.mono_path %>",
+  "homepage": "https://github.com/<%= pkg.git_path %>/tree/master/<%= pkg.mono_path %>",
   "scripts": {
     "build": "ftsc ./src/* --outDir ./lib",
     "test": "fibjs test",
@@ -18,7 +18,7 @@
   "author": "richardo2016 <richardo2016@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@fibjs/types": "^0.30.0",
+    "@fibjs/types": "^0.31.0",
     "fib-pool": "^1.6.0",
     "fib-typify": "^0.8.3"
   },
@@ -30,7 +30,8 @@
 		"version": [
       "0.28.0",
       "0.29.0",
-      "0.30.0"
+      "0.30.0",
+      "0.31.0"
 		]
 	}
 }

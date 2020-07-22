@@ -30,7 +30,7 @@ const readJson = (jsonpath) => {
 const prettyJson = (content) => {
   return JSON.stringify(
     content, null, '\t'
-  )
+  ) + '\n'
 }
 
 packages.forEach(({
@@ -38,8 +38,8 @@ packages.forEach(({
   isTopPackage,
   _dirname,
 }) => {
-  const comPkgname = `${comname}` || _dirname
-  const comDirname = _dirname || comPkgname
+  const comPkgname = _dirname || `${comname}`
+  const comDirname = comPkgname
   const comDir = path.resolve(PKG_DIR, `./${comDirname}`)
   if (!fs.existsSync(comDir)) mkdirp(comDir)
 
@@ -77,8 +77,24 @@ packages.forEach(({
     })
 
     if (fname === PKG_JSON_NAME) {
+      output = JSON.parse(output)
+
+      if (existedTargetPkgJson.dependencies) {
+        output.dependencies =  {
+          ...existedTargetPkgJson.dependencies,
+          ...output.dependencies,
+        }
+      }
+
+      if (existedTargetPkgJson.devDependencies) {
+        output.devDependencies =  {
+          ...existedTargetPkgJson.devDependencies,
+          ...output.devDependencies,
+        }
+      }
+
       output = prettyJson(
-        Object.assign({}, existedTargetPkgJson, JSON.parse(output))
+        Object.assign({}, existedTargetPkgJson, output)
       )
 
       if (target_existed && prettyJson(existedTargetPkgJson) === output) return ;

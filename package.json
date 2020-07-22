@@ -2,7 +2,7 @@
   "name": "fibjs-mono-starter",
   "mono": {
     "scope": "fibjs-mono-group",
-    "git_path": "fibjs-mono-group/path"
+    "git_path": "fibjs-mono-group/repo_name"
   },
   "private": true,
   "scripts": {
