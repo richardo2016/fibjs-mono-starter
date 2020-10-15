@@ -10,6 +10,8 @@
             "es2015",
             "es2016"
         ],
+        "declaration": true,
+        "declarationDir": "typings",
         "types": [
             "@fibjs/types"
         ],

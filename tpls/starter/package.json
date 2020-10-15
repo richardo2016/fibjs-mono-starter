@@ -1,6 +1,7 @@
 {
   "name": "<%= pkg.npm_name %>",
   "version": "0.1.0",
+  "private": <%= buildmeta.no_publish ? 'true' : 'false' %>,
   "description": "",
   "main": "lib",
   "types": "typings/index.d.ts",

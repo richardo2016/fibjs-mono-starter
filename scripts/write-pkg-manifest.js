@@ -35,6 +35,7 @@ const prettyJson = (content) => {
 
 packages.forEach(({
   name: comname,
+  no_publish,
   isTopPackage,
   _dirname,
 }) => {
@@ -73,6 +74,9 @@ packages.forEach(({
         git_path: monoInfo.gitPath || `${monoscope}/${monoName}`,
         mono_path: `packages/${comPkgname}`,
         isTopPackage,
+      },
+      buildmeta: {
+        no_publish
       }
     })
 

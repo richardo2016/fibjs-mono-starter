@@ -1,5 +1,5 @@
-## @fibjs-monogroup/imodule-foo
+## @fibjs-mono-group/imodule-foo
 
-[![NPM version](https://img.shields.io/npm/v/@fibjs-monogroup/imodule-foo.svg)](https://www.npmjs.org/package/@fibjs-monogroup/imodule-foo)
-[![Build Status](https://travis-ci.org/fibjs-monogroup/fibjs-mono-starter.svg)](https://travis-ci.org/fibjs-monogroup/fibjs-mono-starter)
+[![NPM version](https://img.shields.io/npm/v/@fibjs-mono-group/imodule-foo.svg)](https://www.npmjs.org/package/@fibjs-mono-group/imodule-foo)
+[![Build Status](https://travis-ci.org/fibjs-mono-group/repo_name.svg)](https://travis-ci.org/fibjs-mono-group/repo_name)
 
