@@ -8,7 +8,8 @@
   "scripts": {
     "build": "lerna run build",
     "ci": "lerna run ci",
-    "update-pkg": "fibjs ./scripts/write-pkg-manifest.js"
+    "update-pkg": "fibjs ./scripts/write-pkg-manifest.js",
+    "patch-doc": "fibjs ./scripts/sync_readme.js"
   },
   "devDependencies": {
     "@fibjs/fs-readdir-recursive": "^1.0.2",
