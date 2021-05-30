@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@fibjs/fs-readdir-recursive": "^1.0.2",
-    "@fibjs/mkdirp": "^1.0.1",
     "ejs": "^3.0.2",
     "lerna": "^3.20.2"
   }

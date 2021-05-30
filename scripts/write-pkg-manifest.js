@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-const mkdirp = require('@fibjs/mkdirp')
 const readdirr = require('@fibjs/fs-readdir-recursive')
 
 const ejs = require('ejs')
 
+const { mkdirp } = require('../helpers/fs');
 const monoInfo = require('../helpers/monoInfo')
 
 const monoscope = monoInfo.monoScope

@@ -8,18 +8,7 @@ ssl.loadRootCerts()
 
 const monoInfo = require('../helpers/monoInfo');
 const SCOPE_PREFIX = monoInfo.scopePrefix;
-
-const mkdirp = function (inputp) {
-    try {
-        if (!fs.exists(inputp))
-            fs.mkdir(inputp);
-    } catch (e) {
-        mkdirp(path.dirname(inputp));
-        try {
-            fs.mkdir(inputp);
-        } catch (e) {}
-    }
-}
+const { mkdirp } = require('../helpers/fs');
 
 const PROJ_ROOT = path.resolve(__dirname, '../');
 const hc = new http.Client();
