@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "@fibjs/ci": "^2.2.0",
-    "@fibjs/types": "^0.27.1",
+    "@fibjs/types": "^0.35.0",
     "cross-env": "^5.2.0",
-    "fib-typify": "^0.9.0",
+    "fib-typify": "^0.11.4",
     "lodash": "^4.17.11",
     "semver": "^5.6.0",
     "fib-pool": "^1.6.0"
