@@ -12,8 +12,15 @@
     "patch-doc": "fibjs ./scripts/sync_readme.js"
   },
   "devDependencies": {
+    "@fibjs/ci": "^2.6.0",
     "@fibjs/fs-readdir-recursive": "^1.0.2",
     "ejs": "^3.0.2",
     "lerna": "^6.0.3"
+  },
+  "ci": {
+    "type": "actions",
+    "version": [
+      "0.35.0"
+    ]
   }
 }
