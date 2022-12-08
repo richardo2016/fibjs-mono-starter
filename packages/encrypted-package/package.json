@@ -1,0 +1,47 @@
+{
+	"name": "@fibjs-mono-group/encrypted-package",
+	"version": "0.1.0",
+	"private": false,
+	"description": "",
+	"main": "lib",
+	"types": "typings/index.d.ts",
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/fibjs-mono-group/repo_name/tree/master/packages/encrypted-package"
+	},
+	"homepage": "https://github.com/fibjs-mono-group/repo_name/tree/master/packages/encrypted-package",
+	"scripts": {
+		"prebuild": "rm -rf typings/ lib/",
+		"build": "ftsc ./src/* --outDir ./lib",
+		"pack": "fibjs ../../scripts/zip-pkg.js && rm -rf lib/",
+		"test:require": "npm run build && npm run pack && npm run postinstall",
+		"test": "fib-typify ./test",
+		"ci": "npm run build && npm run test",
+		"prepublishOnly": "npm run ci && npm run pack",
+		"postinstall": "fibjs ./scripts/unzip-pkg.js",
+		"unzip": "fibjs ./scripts/unzip-pkg.js",
+		"unzip:cmd": "[[ -e ./lib.zip ]] && unzip -o -j ./lib.zip unzip.nopwd.js -d ./lib && fibjs ./lib/unzip.nopwd.js"
+	},
+	"files": [
+		"scripts/unzip-pkg.js",
+		"lib.zip",
+		"typings"
+	],
+	"author": "richardo2016 <richardo2016@gmail.com>",
+	"license": "ISC",
+	"devDependencies": {
+		"@fibjs/types": "^0.35.0",
+		"fib-pool": "^1.6.0",
+		"fib-typify": "^0.11.4"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"ci": {
+		"type": "actions",
+		"version": [
+			"0.34.0",
+			"0.35.0"
+		]
+	}
+}

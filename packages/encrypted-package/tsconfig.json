@@ -11,12 +11,12 @@
             "es2016"
         ],
         "declaration": true,
-        "declarationDir": "<%= buildmeta.encrypt_package ? 'typings' : 'lib' %>",
+        "declarationDir": "typings",
         "types": [
             "@fibjs/types"
         ],
         "typeRoots": [
-            "<%= buildmeta.encrypt_package ? 'typings/index.d.ts' : 'lib/index.d.ts' %>"
+            "typings/index.d.ts"
         ]
     }
 }

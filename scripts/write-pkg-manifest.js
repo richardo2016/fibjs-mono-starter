@@ -33,10 +33,16 @@ const prettyJson = (content) => {
   ) + '\n'
 }
 
+function normalizePosixPath (fname) {
+  return fname.replace(/\\/g, '/')
+}
+
 packages.forEach(({
   name: comname,
   no_publish,
+  encrypt_package,
   isTopPackage,
+  test_dist,
   _dirname,
 }) => {
   const comPkgname = _dirname || `${comname}`
@@ -51,13 +57,25 @@ packages.forEach(({
     const spath = path.resolve(TPL_DIR, fname)
     const tpath = path.resolve(comDir, fname)
 
+    if (!encrypt_package) {
+      if (normalizePosixPath(fname).includes('src/unzip.nopwd.ts')) return ;
+      if (normalizePosixPath(fname).includes('scripts/unzip-pkg.js')) return ;
+    }
+    if (test_dist) {
+      if (normalizePosixPath(fname).includes('test/index.ts')) return ;
+      if (normalizePosixPath(fname).includes('test/test.d.ts')) return ;
+    } else {
+      if (normalizePosixPath(fname).includes('test/index.js')) return ;
+    }
+
     let existedTargetPkgJson = {}
 
     const target_existed = fs.exists(tpath)
     if (target_existed) {
-      if (fname !== PKG_JSON_NAME)
+      if (![PKG_JSON_NAME, 'tsconfig.json'].includes(fname))
         return ;
-      else
+
+      else if (fname === PKG_JSON_NAME)
         existedTargetPkgJson = readJson(tpath)
     }
 
@@ -76,12 +94,15 @@ packages.forEach(({
         isTopPackage,
       },
       buildmeta: {
-        no_publish
+        no_publish,
+        encrypt_package,
+        test_dist,
+        type_path: encrypt_package ? 'typings/index.d.ts' : 'lib/index.d.ts'
       }
     })
 
     if (fname === PKG_JSON_NAME) {
-      output = JSON.parse(output)
+        output = JSON.parse(output)
 
       if (existedTargetPkgJson.dependencies) {
         output.dependencies =  {
@@ -97,6 +118,16 @@ packages.forEach(({
         }
       }
 
+      if (existedTargetPkgJson.scripts) {
+        output.scripts =  {
+          ...existedTargetPkgJson.scripts,
+          ...output.scripts,
+        }
+      }
+
+      if ("private" in existedTargetPkgJson) output.private = existedTargetPkgJson.private
+      output.main = existedTargetPkgJson.main || output.main
+      output.types = existedTargetPkgJson.types || output.types
       output.version = existedTargetPkgJson.version || output.version
       output.description = existedTargetPkgJson.description || output.description
 
@@ -107,7 +138,7 @@ packages.forEach(({
       if (target_existed && prettyJson(existedTargetPkgJson) === output) return ;
     }
     
-    fs.writeTextFile(tpath, output)
+    fs.writeTextFile(tpath, output.replace(/\r\n/g, '\n'))
 
     console.info(`[output] write file ${tpath} successly`)
   })

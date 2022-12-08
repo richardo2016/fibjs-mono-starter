@@ -4,22 +4,43 @@
   "private": <%= buildmeta.no_publish ? 'true' : 'false' %>,
   "description": "",
   "main": "lib",
-  "types": "lib/index.d.ts",
+  "types": "<%= buildmeta.type_path %>",
   "repository": {
     "type": "https",
     "url": "https://github.com/<%= pkg.git_path %>/tree/master/<%= pkg.mono_path %>"
   },
   "homepage": "https://github.com/<%= pkg.git_path %>/tree/master/<%= pkg.mono_path %>",
   "scripts": {
+    <% if (buildmeta.encrypt_package) { %>
+		"prebuild": "rm -rf typings/ lib/",
+		"build": "ftsc ./src/* --outDir ./lib",
+		"pack": "fibjs ../../scripts/zip-pkg.js && rm -rf lib/",
+		"test:require": "npm run build && npm run pack && npm run postinstall",
+		"test": "<%= buildmeta.test_dist ? 'fibjs test' : 'fib-typify ./test' %>",
+		"ci": "npm run build && npm run test",
+		"prepublishOnly": "npm run ci && npm run pack",
+		"postinstall": "fibjs ./scripts/unzip-pkg.js",
+		"unzip": "fibjs ./scripts/unzip-pkg.js",
+		"unzip:cmd": "[[ -e ./lib.zip ]] && unzip -o -j ./lib.zip unzip.nopwd.js -d ./lib && fibjs ./lib/unzip.nopwd.js"
+    <% } else { %>
     "build": "ftsc ./src/* --outDir ./lib",
-    "test": "fibjs test",
+    "test": "<%= buildmeta.test_dist ? 'fibjs test' : 'fib-typify ./test' %>",
     "ci": "npm run build && npm run test",
     "prepublishOnly": "npm run ci"
+    <% } %>
   },
+  <% if (buildmeta.encrypt_package) { %>
+  "files": [
+    "scripts/unzip-pkg.js",
+    "lib.zip",
+    "typings"
+  ],
+  <% } else { %>
   "files": [
     "lib",
     "typings"
   ],
+  <% } %>
   "author": "richardo2016 <richardo2016@gmail.com>",
   "license": "ISC",
   "devDependencies": {
